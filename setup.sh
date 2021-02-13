@@ -17,9 +17,10 @@ INSTALL_DIR="$(pwd)"
 echo "Hello from '$BASE/setup.sh'"
 echo "Install dir: '$INSTALL_DIR'"
 
-set -x
-git -C "${BASE}" remote get-url origin
-git -C "${BASE}" branch | awk '/^\*/ {print $NF}'
+GIT_URL=$( git -C "${BASE}" remote get-url origin )
+GIT_BRANCH=$( git -C "${BASE}" branch | awk '/^\*/ {print $NF}' )
+echo "URL: $GIT_URL"
+echo "BRANCH: $GIT_BRANCH"
 
 
 echo "Nothing else to do."
