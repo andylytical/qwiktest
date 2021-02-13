@@ -19,7 +19,7 @@ echo "Install dir: '$INSTALL_DIR'"
 
 set -x
 git -C "${BASE}" remote -v
-git -C "${BASE}" branch -a
+git -C "${BASE}" branch
 
 
 echo "Nothing else to do."
