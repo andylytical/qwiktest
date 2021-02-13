@@ -18,8 +18,8 @@ echo "Hello from '$BASE/setup.sh'"
 echo "Install dir: '$INSTALL_DIR'"
 
 set -x
-git -C "${BASE}" remote -v
-git -C "${BASE}" branch
+git -C "${BASE}" remote get-url origin
+git -C "${BASE}" branch | awk '/^\*/ {print $NF}'
 
 
 echo "Nothing else to do."
