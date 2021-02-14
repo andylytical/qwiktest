@@ -12,7 +12,7 @@ BASE=$( dirname $0 )
 TS=$(date +%s)
 
 save_config_var() {
-  local _fn_conf="$INSTALL_DIR/qwiktest/.setup.cfg"
+  local _fn_conf="$TGT_DIR/.setup.cfg"
   local _key="$1"
   local _val="${!_key}"
   [[ -e "$_fn_conf" ]] || echo "# last update" > "$_fn_conf"
@@ -23,9 +23,12 @@ save_config_var() {
 # Output from 'pwd' will be the directory from which quickstart was invoked
 INSTALL_DIR="$(pwd)"
 [[ -n "$QWIKTEST_INSTALL_DIR" ]] && INSTALL_DIR="$QWIKTEST_INSTALL_DIR"
+TGT_DIR="$INSTALL_DIR/qwiktest"
+mkdir -p "$TGT_DIR"
 
 echo "Hello from '$BASE/setup.sh'"
 echo "Install dir: '$INSTALL_DIR'"
+echo "Target dir: '$TGT_DIR'"
 
 GIT_URL=$( git -C "${BASE}" remote get-url origin )
 echo "Found GIT_URL: $GIT_URL"
@@ -35,6 +38,6 @@ GIT_BRANCH=$( git -C "${BASE}" branch | awk '/^\*/ {print $NF}' )
 echo "Found GIT_BRANCH: $GIT_BRANCH"
 save_config_var GIT_BRANCH
 
-cat "$INSTALL_DIR/qwiktest/.setup.cfg"
+cat "$TGT_DIR/.setup.cfg"
 
 echo "Nothing else to do."
