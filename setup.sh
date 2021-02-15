@@ -12,6 +12,7 @@ BASE=$( dirname $0 )
 TS=$(date +%s)
 
 save_config_var() {
+  set -x
   local _fn_conf="$TGT_DIR/.setup.cfg"
   local _key="$1"
   local _val="${!_key}"
