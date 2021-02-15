@@ -19,7 +19,7 @@ save_config_var() {
   [[ -e "$_fn_conf" ]] || echo "# last update" > "$_fn_conf"
   sed -i -n -e "/last update/c# last update $TS" "$_fn_conf"
   cat "$_fn_conf"
-  sed -i "/^${_key}=/!p" "$_fn_conf"
+  sed -i -n -e "/^${_key}=/!p" "$_fn_conf"
   cat "$_fn_conf"
   echo "${_key}=${_val}" >> "$_fn_conf"
   cat "$_fn_conf"
