@@ -32,6 +32,9 @@ echo "Hello from '$BASE/setup.sh'"
 echo "Install dir: '$INSTALL_DIR'"
 echo "Target dir: '$TGT_DIR'"
 
+testvarone=xy34t
+save_config_var testvarone
+
 GIT_BRANCH=$( git -C "${BASE}" branch | awk '/^\*/ {print $NF}' )
 echo "Found GIT_BRANCH: $GIT_BRANCH"
 save_config_var GIT_BRANCH
