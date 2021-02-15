@@ -13,24 +13,22 @@ TS=$(date +%s)
 
 save_config_var() {
   set -x
-  local _fn_conf="$TGT_DIR/.setup.cfg"
+  local _fn_conf="$INSTALL_DIR/.setup.cfg"
   local _key="$1"
   local _val="${!_key}"
   [[ -e "$_fn_conf" ]] || echo "# last update" > "$_fn_conf"
   sed -i -e "/last update/c# last update $TS" "$_fn_conf"
   sed -i -n -e "/^${_key}=/!p" -e "\$a${_key}=${_val}" "$_fn_conf"
-#  echo "${_key}=${_val}" >> "$_fn_conf"
 }
 
 # Output from 'pwd' will be the directory from which quickstart was invoked
-INSTALL_DIR="$(pwd)"
+INSTALL_DIR="$(pwd)/qwiktest"
 [[ -n "$QWIKTEST_INSTALL_DIR" ]] && INSTALL_DIR="$QWIKTEST_INSTALL_DIR"
 TGT_DIR="$INSTALL_DIR/qwiktest"
-mkdir -p "$TGT_DIR"
+mkdir -p "$INSTALL_DIR"
 
 echo "Hello from '$BASE/setup.sh'"
 echo "Install dir: '$INSTALL_DIR'"
-echo "Target dir: '$TGT_DIR'"
 
 # testvarone=xy34t
 # save_config_var testvarone
@@ -43,6 +41,6 @@ GIT_URL=$( git -C "${BASE}" remote get-url origin )
 echo "Found GIT_URL: $GIT_URL"
 save_config_var GIT_URL
 
-cat "$TGT_DIR/.setup.cfg"
+cat "$INSTALL_DIR/.setup.cfg"
 
 echo "Nothing else to do."
