@@ -18,11 +18,8 @@ save_config_var() {
   local _val="${!_key}"
   [[ -e "$_fn_conf" ]] || echo "# last update" > "$_fn_conf"
   sed -i -e "/last update/c# last update $TS" "$_fn_conf"
-  cat "$_fn_conf"
   sed -i -n -e "/^${_key}=/!p" "$_fn_conf"
-  cat "$_fn_conf"
   echo "${_key}=${_val}" >> "$_fn_conf"
-  cat "$_fn_conf"
 }
 
 # Output from 'pwd' will be the directory from which quickstart was invoked
