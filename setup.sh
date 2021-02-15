@@ -31,7 +31,8 @@ echo "Hello from '$BASE/setup.sh'"
 echo "Install dir: '$INSTALL_DIR'"
 echo "Target dir: '$TGT_DIR'"
 
-GIT_URL=$( git -C "${BASE}" remote get-url origin )
+#GIT_URL=$( git -C "${BASE}" remote get-url origin )
+GIT_URL=abcdefg
 echo "Found GIT_URL: $GIT_URL"
 save_config_var GIT_URL
 
